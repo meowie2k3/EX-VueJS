@@ -16,10 +16,10 @@ app.use(cors()) // enable cors
 //patch
 
 
-// create status endpoint
-app.get('/status', (req, res) => {
+// create register endpoint
+app.post('/register', (req, res) => {
     res.send({
-        message: 'hello world!'
+        message: `Hello ${req.body.email}, your user was registered`
     })
 })
 
