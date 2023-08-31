@@ -16,23 +16,23 @@
 <script>
 import AuthService from '@/services/AuthService'
 export default {
-    name: 'Register',
-    data() {
-        return {
-            email: '',
-            password: ''
-        }
-    },
-    methods: {
-        async register () {
-            //console.log('register', this.Email, this.Password)
-            const response = await AuthService.register({
-                email: this.email,
-                password: this.password
-            })
-            console.log(response.data)
-        }
+  name: 'Register',
+  data () {
+    return {
+      email: '',
+      password: ''
     }
+  },
+  methods: {
+    async register () {
+      // console.log('register', this.Email, this.Password)
+      const response = await AuthService.register({
+        email: this.email,
+        password: this.password
+      })
+      console.log(response.data)
+    }
+  }
 }
 </script>
 
