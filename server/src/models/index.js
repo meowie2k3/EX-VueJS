@@ -29,6 +29,4 @@ fs
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-db.images = require("./image.model.js")(sequelize, Sequelize);
-
 module.exports = db

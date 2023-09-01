@@ -7,6 +7,11 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      name: 'Home',
+      component: Register // TODO: change to Home
+    },
+    {
       path: '/register',
       name: 'Register',
       component: Register

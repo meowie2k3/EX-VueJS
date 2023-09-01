@@ -8,9 +8,23 @@ module.exports = (sequelize, DataTypes) =>
         name: DataTypes.STRING,
         email: {
             type: DataTypes.STRING,
-            unique: true // unique email
+            unique: true, // unique email
+            validate: {
+                isEmail: {
+                    args: true,
+                    msg: "Must be a valid email address",
+                }, // use email validator
+            }
         },
-        password: DataTypes.STRING,
+        password: {
+            type: DataTypes.STRING,
+            validate: {
+                len: {
+                    args: [8, 100],
+                    msg: "Password must be at least 8 characters long",
+                },
+            }
+        },
         role: DataTypes.STRING,
         location: DataTypes.STRING,
         description: DataTypes.STRING,

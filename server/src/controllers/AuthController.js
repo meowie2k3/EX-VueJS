@@ -26,19 +26,25 @@ const getUid = () => {
 module.exports = {
     // register
     async register(req, res) {
-        //try {
+        try {
             //generate uid
             req.body.uid = getUid()
             // create user
             const user = await users.create(req.body)
             // send back user info
             res.send(user.toJSON())
-        // } catch (err) {
-        //     // email already exists
-        //     res.status(400).send({
-        //         error: 'This email account is already in use.'
-        //     })
-        // }
+        } catch (err) {
+            //res.status(400).send(err)
+
+            // format error message
+            message = ''
+            for(let i = '0'; i < err.errors.length; i++){
+                message += err.errors[i].message + '\n'
+            }
+            // send error message
+            // can only send one error message
+            res.status(400).send(message)
+        }
     },
 
     // test query
@@ -51,4 +57,3 @@ module.exports = {
         response.send(queryJSON)
     }
 }
-
