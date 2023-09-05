@@ -12,12 +12,15 @@
         <button @click="register">
             Register
         </button>
+        <br>
+        <p>{{ message }}</p>
     </div>
     <!-- v-model: bind input data to variables -->
 </template>
 
 <script>
 import AuthService from '@/services/AuthService'
+import Vue from 'vue'
 export default {
   name: 'Register',
   data () {
@@ -25,19 +28,33 @@ export default {
       name: '',
       role: '',
       email: '',
-      password: ''
+      password: '',
+      message: ''
+    }
+  },
+  watch: {
+    $route () {
+      Vue.set(this.$data, 'message', '')
     }
   },
   methods: {
     async register () {
       // console.log('register', this.Email, this.Password)
-      const response = await AuthService.register({
-        name: this.name,
-        role: this.role,
-        email: this.email,
-        password: this.password
-      })
-      console.log(response.data)
+      try {
+        await AuthService.register({
+          name: this.name,
+          role: this.role,
+          email: this.email,
+          password: this.password
+        })
+        Vue.set(this.$data, 'message', 'Registration successful. Redirecting to home page.')
+        setTimeout(() => {
+          this.$router.push('/')
+        }, 2000)
+      } catch (error) {
+        Vue.set(this.$data, 'message', error.response.data)
+        console.log(error.response.data)
+      }
     }
   }
 }
