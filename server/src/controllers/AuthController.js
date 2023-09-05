@@ -10,15 +10,6 @@ const getUid = () => {
     for (let i = 0; i < uidLength; i++) {
         uid += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length))
     }
-    //check if uid already exists
-    // tmpuser = User.findOne({
-    //     where: {
-    //         uid: uid
-    //     }
-    // })
-    // if (tmpuser) {
-    //     return getUid()
-    // }
     return uid
 }
 
