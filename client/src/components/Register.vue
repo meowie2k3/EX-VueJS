@@ -53,7 +53,7 @@ export default {
         }, 2000)
       } catch (error) {
         Vue.set(this.$data, 'message', error.response.data)
-        console.log(error.response.data)
+        //console.log(error.response.data)
       }
     }
   }
