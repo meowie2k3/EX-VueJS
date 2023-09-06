@@ -7,6 +7,7 @@ module.exports = (app) => {
         // TODO: middleware validation
         AuthController.register)
 
-    // test api route
-    app.get('/test',AuthController.test)
+    // login route
+    app.post('/login',
+        AuthController.login)
 }

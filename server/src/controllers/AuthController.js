@@ -1,9 +1,11 @@
 const { users } = require('../models')
 const { QueryTypes } = require('sequelize');
 const sequelize = require('../models/index').sequelize
+const jwt = require('jsonwebtoken')
+const config = require('../config/config')
 
 //generate uid
-const getUid = () => {
+function getUid () {
     const uidLength = 45
     const possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     let uid = ''
@@ -11,6 +13,18 @@ const getUid = () => {
         uid += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length))
     }
     return uid
+}
+
+// trim spaces at the end of data
+function trimData (data) {
+    for(let i = data.length - 1; i >= 0; i--){
+        if(data[i] == ' '){
+            data = data.slice(0, i)
+        }else{
+            break
+        }
+    }
+    return data;
 }
 
 
@@ -23,7 +37,8 @@ module.exports = {
             // create user
             const user = await users.create(req.body)
             // send back user info
-            res.send(user.toJSON())
+            // res.send(user.toJSON())
+            res.send("User created")
         } catch (err) {
             //res.status(400).send(err)
 
@@ -38,13 +53,50 @@ module.exports = {
         }
     },
 
+    async login(req, res) {
+        try{
+            const { email, password } = req.body
+            const user = await users.findOne({
+                where: {
+                    email: email
+                }
+            })
+            if (!user) {
+                return res.status(403).send({
+                    error: 'The login information was incorrect'
+                })
+            }
+            else {
+                //console.log(user.toJSON())
+                // data trimming
+                user.email = trimData(user.email)
+                user.password =  trimData(user.password)
+                //console.log(user.password + " " + password)
+            }
+
+            const isPasswordValid = (password == user.password)
+            //console.log(isPasswordValid)
+            if (!isPasswordValid) {
+                //console.log(user.password + " " + password)
+                return res.status(403).send({
+                    error: 'Password is incorrect'
+                })
+            }
+            // send back user info
+            res.send(user.toJSON())
+
+        }catch(err){
+            res.status(500).send(err)
+        }
+    },
+
     // test query
-    async test (request, response) {
-        // find all current users
-        const query = await sequelize.query("SELECT * FROM users", { type: QueryTypes.SELECT });
-        // make query into json
-        const queryJSON = JSON.stringify(query)
-        // send query
-        response.send(queryJSON)
-    }
+    // async test (request, response) {
+    //     // find all current users
+    //     const query = await sequelize.query("SELECT * FROM users", { type: QueryTypes.SELECT });
+    //     // make query into json
+    //     const queryJSON = JSON.stringify(query)
+    //     // send query
+    //     response.send(queryJSON)
+    // }
 }
