@@ -90,13 +90,13 @@ module.exports = {
         }
     },
 
-    // test query
-    // async test (request, response) {
-    //     // find all current users
-    //     const query = await sequelize.query("SELECT * FROM users", { type: QueryTypes.SELECT });
-    //     // make query into json
-    //     const queryJSON = JSON.stringify(query)
-    //     // send query
-    //     response.send(queryJSON)
-    // }
+    //test query
+    async test (request, response) {
+        // find all current users
+        const query = await sequelize.query("SELECT * FROM users", { type: QueryTypes.SELECT });
+        // make query into json
+        const queryJSON = JSON.stringify(query)
+        // send query
+        response.send(queryJSON)
+    }
 }
