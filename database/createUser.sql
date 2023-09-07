@@ -1,11 +1,11 @@
 CREATE TABLE users (
-    uid char(50) NOT NULL PRIMARY KEY,
-    name char(50) NOT NULL,
-    email char(50) NOT NULL,
-    password char(50) NOT NULL,
-    role char(50) NOT NULL,
-    location char(50),
-    description char(100),
+    uid varchar(50) NOT NULL PRIMARY KEY,
+    name varchar(50) NOT NULL,
+    email varchar(50) NOT NULL,
+    password varchar(72) NOT NULL,
+    role varchar(50) NOT NULL,
+    location varchar(50),
+    description varchar(100),
     photo image,
 );
 

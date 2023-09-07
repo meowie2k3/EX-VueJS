@@ -1,5 +1,39 @@
-module.exports = (sequelize, DataTypes) =>
-    sequelize.define('users', {
+const { hash } = require('bcrypt-nodejs');
+const Promise = require('bluebird');
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+
+function hashPassword (user, options) {
+    const SALT_FACTOR = 8
+
+    //console.log('hashPassword')
+
+    if(!user.changed('password')){
+        return;
+    }
+
+    return bcrypt
+        .genSaltAsync(SALT_FACTOR)
+        .then(salt => bcrypt.hashAsync(user.password, salt, null))
+        .then(hash => {
+            user.setDataValue('password', hash)
+        })
+}
+
+async function hashString (string) {
+    const SALT_FACTOR = 8
+
+    //return a string not a promise
+    return bcrypt
+        .genSaltAsync(SALT_FACTOR)
+        .then(salt => bcrypt.hashAsync(string, salt, null))
+        .then(hash => {
+            return hash
+        }
+    )
+}
+
+module.exports = (sequelize, DataTypes) =>{
+    const users = sequelize.define('users', {
         uid: {
             type: DataTypes.STRING,
             unique: true, // unique uid
@@ -20,7 +54,7 @@ module.exports = (sequelize, DataTypes) =>
             type: DataTypes.STRING,
             validate: {
                 len: {
-                    args: [8, 100],
+                    args: [8, 50],
                     msg: "Password must be at least 8 characters long",
                 },
             }
@@ -32,5 +66,18 @@ module.exports = (sequelize, DataTypes) =>
     },
     {
         timestamps: false,
-        freezeTableName: true
+        freezeTableName: true,
+        hooks: {
+            beforeCreate: hashPassword,
+            beforeUpdate: hashPassword,
+            beforeSave: hashPassword
+        }
     })
+
+    users.prototype.comparePassword = async function (password) {
+        return await bcrypt.compareAsync(password, this.password)
+    }
+
+
+    return users
+}

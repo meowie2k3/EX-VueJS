@@ -15,16 +15,12 @@ function getUid () {
     return uid
 }
 
-// trim spaces at the end of data
-function trimData (data) {
-    for(let i = data.length - 1; i >= 0; i--){
-        if(data[i] == ' '){
-            data = data.slice(0, i)
-        }else{
-            break
-        }
-    }
-    return data;
+function jwtSignUser (user) {
+    // 1 week sign in duration
+    const ONE_WEEK = 60 * 60 * 24 * 7
+    return jwt.sign(user, config.authentication.jwtSecret, {
+        expiresIn: ONE_WEEK
+    })
 }
 
 
@@ -38,18 +34,21 @@ module.exports = {
             const user = await users.create(req.body)
             // send back user info
             // res.send(user.toJSON())
-            res.send("User created")
+            res.send({
+                user: user.toJSON(),
+                token: jwtSignUser(user.toJSON())
+            })
         } catch (err) {
-            //res.status(400).send(err)
+            res.status(400).send(err)
 
             // format error message
-            message = ''
-            for(let i = '0'; i < err.errors.length; i++){
-                message += err.errors[i].message + '\n'
-            }
-            // send error message
-            // can only send one error message
-            res.status(400).send(message)
+            // message = ''
+            // for(let i = 0; i < err.errors.length; i++){
+            //     message += err.errors[i.toString()].message + '\n'
+            // }
+            // // send error message
+            // // can only send one error message
+            // res.status(400).send(message)
         }
     },
 
@@ -66,15 +65,8 @@ module.exports = {
                     error: 'The login information was incorrect'
                 })
             }
-            else {
-                //console.log(user.toJSON())
-                // data trimming
-                user.email = trimData(user.email)
-                user.password =  trimData(user.password)
-                //console.log(user.password + " " + password)
-            }
 
-            const isPasswordValid = (password == user.password)
+            const isPasswordValid = await user.comparePassword(password)
             //console.log(isPasswordValid)
             if (!isPasswordValid) {
                 //console.log(user.password + " " + password)
@@ -82,8 +74,12 @@ module.exports = {
                     error: 'Password is incorrect'
                 })
             }
+            //console.log("login success")
             // send back user info
-            res.send(user.toJSON())
+            res.send({
+                user: user.toJSON(),
+                token: jwtSignUser(user.toJSON())
+            })
 
         }catch(err){
             res.status(500).send(err)
