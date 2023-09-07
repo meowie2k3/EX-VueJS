@@ -19,6 +19,19 @@ function hashPassword (user, options) {
         })
 }
 
+async function hashString (string) {
+    const SALT_FACTOR = 8
+
+    //return a string not a promise
+    return bcrypt
+        .genSaltAsync(SALT_FACTOR)
+        .then(salt => bcrypt.hashAsync(string, salt, null))
+        .then(hash => {
+            return hash
+        }
+    )
+}
+
 module.exports = (sequelize, DataTypes) =>{
     const users = sequelize.define('users', {
         uid: {
@@ -61,8 +74,8 @@ module.exports = (sequelize, DataTypes) =>{
         }
     })
 
-    users.prototype.comparePassword = function (password) {
-        return bcrypt.compareAsync(password, this.password)
+    users.prototype.comparePassword = async function (password) {
+        return await bcrypt.compareAsync(password, this.password)
     }
 
 
