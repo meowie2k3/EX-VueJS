@@ -10,5 +10,9 @@ module.exports = {
             host: process.env.HOST || 'HUYDAO-PC',
             storage: '../../../database/EX-project.sql'
         }
+    },
+
+    authentication: {
+        jwtSecret: process.env.JWT_SECRET || 'secret'
     }
 }
