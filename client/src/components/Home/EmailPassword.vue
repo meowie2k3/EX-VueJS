@@ -60,10 +60,16 @@ export default {
     },
     async login () {
       try {
-        await AuthService.login({
+        const response = await AuthService.login({
           email: this.email,
           password: this.password
         })
+        // console.log(response)
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+        setTimeout(() => {
+          this.$router.push('/newsfeed')
+        }, 2000)
       } catch (error) {
         Vue.set(this.$data, 'message', error.response.data)
         // console.log(error.response.data)

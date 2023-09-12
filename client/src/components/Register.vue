@@ -45,13 +45,15 @@ export default {
     async register () {
       // console.log('register', this.Email, this.Password)
       try {
-        await AuthService.register({
+        const response = await AuthService.register({
           name: this.name,
           role: this.role,
           email: this.email,
           password: this.password
         })
         Vue.set(this.$data, 'message', 'Registration successful. Redirecting to home page.')
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
         setTimeout(() => {
           this.$router.push('/')
         }, 2000)
