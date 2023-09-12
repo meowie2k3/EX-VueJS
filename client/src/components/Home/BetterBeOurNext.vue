@@ -12,10 +12,10 @@
     position: absolute;
     width: 266px;
     height: 450px;
-    right: 15%;
-    top: 30%;
+    right: 20%;
     border-radius: 50%;
 
+    margin: 0px;
     background: rgba(118, 208, 207, 0.8);
     transform: rotate(-25deg);
   }
@@ -87,5 +87,30 @@
 
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     transform: rotate(25deg);
+  }
+  @media (max-width: 575.98px) {
+    .Ellipse_67 {
+      display: none;
+    }
+  }
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .Ellipse_67 {
+      left: 0px;
+      right: 0px;
+      top: 750px;
+
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .Ellipse_67 {
+      right: 10%;
+    }
+  }
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    .Ellipse_67 {
+      right: 15%;
+    }
   }
 </style>

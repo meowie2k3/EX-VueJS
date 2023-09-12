@@ -1,47 +1,37 @@
 <template>
-  <div>
-    <p class="Welcome">Welcome! Let’s join us</p>
+  <div class="Home_Body">
+    <p class="Welcome">Welcome!<br>Let’s join us</p>
     <div class="Email">
-        <p class="Email_address">Email address</p>
-        <input class="Email_box" type="email" name="email" v-model="email" />
+        <p class="Email_Password_Text">Email address</p>
+        <input class="Email_Password_Box" type="email" name="email" v-model="email" />
     </div>
     <div class="Password">
-        <p class="Password_text">Password</p>
-        <input class="Password_box" :type="showPassword ? 'text' : 'password'" name="password" v-model="password" />
+        <p class="Email_Password_Text">Password</p>
+        <input class="Email_Password_Box" :type="showPassword ? 'text' : 'password'" name="password" v-model="password" />
         <div class="Show">
           <i :class="showPassword ? 'fa-sharp fa-regular fa-eye' : 'fa-sharp fa-regular fa-eye-slash'" @click="togglePasswordVisibility"></i>
         </div>
     </div>
     <p class="Forgot">Forgot your password?</p>
-    <div class="error" v-html="message"></div>
+    <div class="Error" v-html="message"></div>
     <div class="SignIn" @click="login">
-        <div class="Rectangle_1">
-            <p class="SignInText2">Sign in</p>
-        </div>
+        <p class="SignIn_Body">Log in</p>
     </div>
-    <div class="or">
+    <div class="Or">
         <div class="line1"></div>
         <p class="orText">or</p>
         <div class="line2"></div>
     </div>
-    <div class="FB">
-        <div class="Rectangle_2">
-            <div class="FBIcon">
-              <i class="fa-brands fa-facebook-f fa-xl" style="color: #3C5A9A; position: absolute; right: 15%; bottom: 35%;"></i>
-            </div>
-            <p class="FBText">Continue with Facebook</p>
-        </div>
+    <div class="FB_Box">
+        <img src="../../assets/Home/facebook-emblem.jpg" alt="LogoFB" class="FBIcon" />
+        <p class="FBText">Continue with Facebook</p>
     </div>
-    <div class="GG">
-        <div class="Rectangle_3">
-            <img src="../../assets/Home/GOOG-0ed88f7c.png" alt="LogoGG" class="GGIcon" />
-            <p class="GGText">Continue with Google</p>
-        </div>
+    <div class="GG_Box">
+        <img src="../../assets/Home/GOOG-0ed88f7c.png" alt="LogoGG" class="GGIcon" />
+        <p class="GGText">Continue with Google</p>
     </div>
-    <router-link class="First" to="/register">
-        <div class="Rectangle_4">
-            <p class="FirstText">First time? Join now</p>
-        </div>
+    <router-link class="FirstBox" to="/register">
+      <p class="FirstText">First time? Join now</p>
     </router-link>
   </div>
 </template>
@@ -84,45 +74,32 @@ export default {
 </script>
 
 <style>
-  .Welcome {
+  .Home_Body {
     position: absolute;
-    left: 15%;
-    top: 15%;
+    max-width: 360px;
+    width: 100%;
+    height: 700px;
+    left: 20%;
+  }
+  .Welcome {
     font-family: 'Lexend Deca';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 400px;
     font-size: 50px;
-    line-height: 62px;
-    display: flex;
-    align-items: center;
+
+    margin: 0px;
+    text-align: left;
 
     color: #323131;
   }
-  .Forgot {
-    position: absolute;
-    left: 15%;
-    top: 65%;
-
-    font-family: 'Lexend Deca';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 25px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-decoration-line: underline;
-
-    color: #76D0CF;
-  }
   .Email {
     position: absolute;
-    width: 390px;
-    height: 78px;
-    left: 15%;
-    top: 35%;
+    max-width: 360px;
+    width: 100%;
+    height: 80px;
+    top: 150px;
   }
-  .Email_address {
+  .Email_Password_Text {
     position: absolute;
     left: 0%;
     top: 0%;
@@ -131,21 +108,20 @@ export default {
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
+
+    margin: 0px;
 
     color: #323131;
   }
-  .Email_box {
+  .Email_Password_Box {
     box-sizing: border-box;
 
     position: absolute;
-    width: 390px;
-    height: 52px;
+    max-width: 360px;
+    width: 100%;
+    height: 50px;
     left: 0%;
-    top: 55%;
+    top: 25px;
 
     background: #FFFFFF;
     border: 1px solid #323131;
@@ -153,183 +129,149 @@ export default {
   }
   .Password {
     position: absolute;
-    width: 390px;
-    height: 77px;
-    left: 15%;
-    top: 50%;
-  }
-  .Password_text {
-    position: absolute;
-    left: 0%;
-    top: 0%;
-
-    font-family: 'Lexend Deca';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-
-    color: #323131;
-  }
-  .Password_box {
-    box-sizing: border-box;
-
-    position: absolute;
-    width: 390px;
-    height: 52px;
-    left: 0%;
-    top: 55%;
-
-    background: #FFFFFF;
-    border: 1px solid #323131;
-    border-radius: 5px;
+    max-width: 360px;
+    width: 100%;
+    height: 80px;
+    top: 245px;
   }
   .Show {
     position: absolute;
-    width: 50px;
-    height: 20px;
-    right: 2%;
-    top: 75%;
+    right: 5%;
+    top: 52.5%;
 
     background: #FFFFFF;
-    border-radius: 5px;
   }
-  .Rectangle_1 {
+  .Error {
     position: absolute;
-    width: 390px;
-    height: 55px;
-    left: 15%;
-    top: 73%;
-    cursor: pointer;
-    background: rgba(118, 208, 207, 0.8);
-    border-radius: 40px;
-  }
-  .SignInText2 {
-    position: absolute;
-    left: 43%;
-    top: -10%;
-
-    font-family: 'Lexend Deca';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 25px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #ffffff;
-  }
-  .SignIn:hover .Rectangle_1,
-  .SignIn:hover .SignInText2
-  {
-    background: rgba(66, 214, 212, 0.8);
-    color: #323131;
-  }
-  .error {
-    position: absolute;
-    left: 15%;
-    top: 63%;
+    top: 330px;
 
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 700;
     font-size: 15px;
-    line-height: 25px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
+
+    margin: 0px;
 
     color: #f84c4c;
   }
-  .or {
+  .Forgot {
     position: absolute;
-    width: 390px;
-    height: 19px;
-    left: 15%;
-    top: 83%;
+    top: 360px;
+
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    text-decoration-line: underline;
+
+    margin: 0px;
+
+    color: #76D0CF;
+  }
+  .SignIn {
+    position: absolute;
+    max-width: 360px;
+    width: 100%;
+    height: 52.4px;
+    top: 400px;
+
+    background: rgba(118, 208, 207, 0.8);
+    border-radius: 40px;
+  }
+  .SignIn_Body {
+    position: absolute;
+    max-width: 360px;
+    width: 100%;
+
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    padding: 15px 0px;
+    margin: 0px;
+    cursor: pointer;
+
+    color: #ffffff;
+  }
+  .SignIn:hover .SignIn_Body{
+    background: rgba(66, 214, 212, 0.8);
+    border-radius: 40px;
+    color: #323131;
+  }
+  .Or {
+    position: absolute;
+    max-width: 360px;
+    width: 100%;
+    height: 17.6px;
+    top: 465px;
   }
   .line1 {
     position: absolute;
-    width: 174.25px;
-    height: 0.5px;
+    width: 165px;
     left: 0%;
-    top: 0%;
+    top: 10px;
 
     border: 0.5px solid #000000;
   }
   .line2 {
     position: absolute;
-    width: 184px;
-    height: 0px;
+    width: 165px;
     right: 0%;
-    top: 0%;
+    top: 10px;
 
     border: 0.5px solid #000000;
   }
   .orText {
     position: absolute;
-    width: 18.6px;
-    height: 19px;
-    left: 47%;
-    bottom: -25%;
+    left: 48%;
 
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
+
+    margin: 0px;
 
     color: #323131;
   }
-  .Rectangle_2 {
+  .FB_Box {
     position: absolute;
-    width: 390px;
-    height: 55px;
-    left: 15%;
-    top: 86%;
+    max-width: 360px;
+    width: 100%;
+    height: 52.4px;
+    top: 500px;
 
     background: #3C5A9A;
     border-radius: 40px;
   }
   .FBIcon {
     position: absolute;
-    width: 30px;
     height: 30px;
-    left: 7%;
+    left: 6%;
     top: 20%;
-
-    background: #ffffff;
-    border-radius: 3px;
   }
   .FBText {
     position: absolute;
     left: 20%;
-    top: -10%;
 
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 25px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+    text-align: left;
+
+    padding: 15px 0px;
+    margin: 0px;
 
     color: #ffffff;
   }
-  .Rectangle_3 {
+  .GG_Box {
     position: absolute;
-    width: 390px;
-    height: 55px;
-    left: 15%;
-    top: 96%;
+    max-width: 360px;
+    width: 100%;
+    height: 52.4px;
+    top: 570px;
 
     background: #FFFFFF;
     border: 1px solid #323131;
@@ -337,36 +279,32 @@ export default {
   }
   .GGIcon {
     position: absolute;
-    width: 30px;
     height: 30px;
     left: 7%;
     top: 20%;
-
-    background: #ffffff;
-    border-radius: 3px;
   }
   .GGText {
     position: absolute;
     left: 20%;
-    top: -10%;
 
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 25px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+    text-align: left;
+
+    padding: 15px 0px;
+    margin: 0px;
 
     color: #323131;
   }
-  .Rectangle_4 {
+  .FirstBox {
     position: absolute;
-    width: 390px;
-    height: 55px;
-    left: 15%;
-    top: 106%;
+    max-width: 360px;
+    width: 100%;
+    height: 52.4px;
+    top: 640px;
+    left: 0px;
 
     background: #FFFFFF;
     border: 1px solid #323131;
@@ -374,21 +312,49 @@ export default {
   }
   .FirstText {
     position: absolute;
-    left: 27%;
-    top: -10%;
+    max-width: 360px;
+    width: 100%;
 
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
-    line-height: 25px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+
+    padding: 15px 0px;
+    margin: 0px;
 
     color: #323131;
   }
-  .Rectangle_4:hover {
+  .FirstBox:hover {
     background: #E5E5E5;
+  }
+  @media (max-width: 575.98px) {
+    .Home_Body {
+      left: 0px;
+      right: 0px;
+      width: 100%;
+
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .Home_Body {
+      left: 0px;
+      right: 0px;
+
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .Home_Body {
+      left: 5%;
+    }
+  }
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    .Home_Body {
+      left: 10%;
+    }
   }
 </style>
