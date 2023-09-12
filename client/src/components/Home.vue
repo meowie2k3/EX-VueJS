@@ -1,8 +1,10 @@
 <template>
     <div>
         <Header></Header>
-        <BetterBeOurNext></BetterBeOurNext>
-        <EmailPassword></EmailPassword>
+        <div class="HomeB">
+            <EmailPassword></EmailPassword>
+            <BetterBeOurNext></BetterBeOurNext>
+        </div>
         <Footer></Footer>
     </div>
 </template>
@@ -21,3 +23,22 @@ export default {
   }
 }
 </script>
+
+<style>
+  .HomeB {
+    position: absolute;
+    top: 140px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 700px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (min-width: 1400px) {
+    .HomeB {
+      width: 1400px;
+    }
+  }
+</style>
