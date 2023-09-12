@@ -52,6 +52,7 @@
 
 <style>
   .Home_BG_Footer {
+    z-index: 0;
     position: absolute;
     height: 480px;
     left: 0px;

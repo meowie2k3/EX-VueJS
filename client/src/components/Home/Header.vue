@@ -12,6 +12,7 @@
 
 <style>
   .Home_BG_Header {
+    z-index: 0;
     position: absolute;
     height: 90px;
     left: 0px;

@@ -1,5 +1,8 @@
 <template>
   <div class="Home_Body">
+    <div v-if="showRegisterHome">
+        <Register :showRegister="showRegisterHome" @register-sent="toggleRegister"></Register>
+    </div>
     <p class="Welcome">Welcome!<br>Let’s join us</p>
     <div class="Email">
         <p class="Email_Password_Text">Email address</p>
@@ -30,14 +33,18 @@
         <img src="../../assets/Home/GOOG-0ed88f7c.png" alt="LogoGG" class="GGIcon" />
         <p class="GGText">Continue with Google</p>
     </div>
-    <router-link class="FirstBox" to="/register">
+    <!-- <router-link class="FirstBox" to="/register">
       <p class="FirstText">First time? Join now</p>
-    </router-link>
+    </router-link> -->
+    <div class="FirstBox" @click="toggleRegister">
+      <p class="FirstText">First time? Join now</p>
+    </div>
   </div>
 </template>
 
 <script>
 import AuthService from '@/services/AuthService'
+import Register from '../Register.vue'
 import Vue from 'vue'
 export default {
   name: 'Home',
@@ -46,8 +53,12 @@ export default {
       email: '',
       password: '',
       message: null,
-      showPassword: false
+      showPassword: false,
+      showRegisterHome: false
     }
+  },
+  components: {
+    Register
   },
   watch: {
     $route () {
@@ -55,6 +66,9 @@ export default {
     }
   },
   methods: {
+    toggleRegister () {
+      this.showRegisterHome = !this.showRegisterHome
+    },
     togglePasswordVisibility () {
       this.showPassword = !this.showPassword
     },
@@ -158,7 +172,7 @@ export default {
 
     margin: 0px;
 
-    color: #f84c4c;
+    color: red;
   }
   .Forgot {
     position: absolute;
@@ -312,6 +326,7 @@ export default {
     top: 640px;
     left: 0px;
 
+    cursor: pointer;
     background: #FFFFFF;
     border: 1px solid #323131;
     border-radius: 40px;

@@ -5,8 +5,9 @@
             <EmailPassword></EmailPassword>
             <BetterBeOurNext></BetterBeOurNext>
         </div>
-        <Footer></Footer>
+        <Footer class="HomeC"></Footer>
     </div>
+    <!-- v-model: bind input data to variables -->
 </template>
 
 <script>
@@ -26,6 +27,7 @@ export default {
 
 <style>
   .HomeB {
+    z-index: 1;
     position: absolute;
     top: 140px;
     left: 0px;
@@ -35,6 +37,9 @@ export default {
 
     margin-left: auto;
     margin-right: auto;
+  }
+  .HomeC {
+    z-index: 0;
   }
   @media (min-width: 1400px) {
     .HomeB {
