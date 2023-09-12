@@ -1,5 +1,6 @@
 <template>
-    <div class="Rectangle_Footer">
+  <div class="Home_BG_Footer">
+    <div class="Home_Footer">
         <img src="../../assets/Home/Logo EX.png" alt="Logo" class="LogoEX_Footer" />
         <div class="General">
             <p class="GeneralText">General</p>
@@ -46,32 +47,43 @@
         </div>
         <p class="Copyright">Copyright © 2023 Ex. All rights reserved</p>
     </div>
+  </div>
 </template>
 
 <style>
-  .Rectangle_Footer {
+  .Home_BG_Footer {
     position: absolute;
-    width: 100%;
-    height: 700px;
+    height: 480px;
     left: 0px;
-    top: 120%;
+    right: 0px;
+    top: 880px;
+    width: 100%;
 
     background: rgba(118, 208, 207, 0.3);
   }
+  .Home_Footer {
+    position: absolute;
+    height: 480px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    width: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
   .LogoEX_Footer {
     position: absolute;
-    left: 8%;
-    top: 8%;
+    left: 10%;
+    top: 5%;
   }
   .GeneralText {
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
     text-align: left;
+    margin: 10px 0px;
 
     color: #323131;
   }
@@ -80,44 +92,123 @@
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
-    line-height: 21px;
     text-align: left;
+    margin: 5px 0px;
+
     color: #595959;
   }
   .General {
     position: absolute;
     left: 25%;
-    top: 8%;
+    top: 5%;
   }
   .Browse_Ex {
     position: absolute;
-    left: 42%;
-    top: 8%;
+    left: 43%;
+    top: 5%;
   }
   .Business {
     position: absolute;
     left: 60%;
-    top: 8%;
+    top: 5%;
   }
   .Directories {
     position: absolute;
     left: 80%;
-    top: 8%;
+    top: 5%;
   }
   .Copyright {
     position: absolute;
-    left: 40%;
     bottom: 0%;
+    width: 100%;
 
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
-    line-height: 21px;
-    display: flex;
-    align-items: center;
     text-align: center;
 
+    margin: 15px 0px;
     color: #323131;
+  }
+  @media (max-width: 575.98px) {
+    .Home_BG_Footer {
+      top: 880px;
+      height: 1020px;
+    }
+    .Home_Footer {
+      height: 1020px;
+    }
+    .LogoEX_Footer {
+      left: 5%;
+      top: 2%;
+    }
+    .General {
+      left: 30%;
+      top: 20px;
+    }
+    .Browse_Ex {
+      left: 30%;
+      top: 240px;
+    }
+    .Business {
+      left: 30%;
+      top: 430px;
+    }
+    .Directories {
+      left: 30%;
+      top: 570px;
+    }
+  }
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .Home_BG_Footer {
+      top: 1400px;
+    }
+    .LogoEX_Footer {
+      left: 3%;
+    }
+    .General {
+      left: 23%;
+    }
+    .Browse_Ex {
+      left: 47%;
+    }
+    .Business {
+      left: 47%;
+      top: 50%;
+    }
+    .Directories {
+      right: 0%;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .LogoEX_Footer {
+      left: 5%;
+    }
+    .General {
+      left: 20%;
+    }
+    .Browse_Ex {
+      left: 39%;
+    }
+    .Business {
+      left: 57%;
+    }
+    .Directories {
+      left: 82%;
+    }
+  }
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    .LogoEX_Footer {
+      left: 8%;
+    }
+    .Directories {
+      left: 82%;
+    }
+  }
+  @media (min-width: 1400px) {
+    .Home_Footer {
+      width: 1400px;
+    }
   }
 </style>
