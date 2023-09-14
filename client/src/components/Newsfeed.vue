@@ -14,6 +14,11 @@ export default {
       this.$router.push('/')
     }
   },
+  data () {
+    return {
+      user: this.$store.state.user
+    }
+  },
   methods: {
     logout () {
       this.$store.dispatch('setToken', null)
