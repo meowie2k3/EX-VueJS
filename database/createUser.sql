@@ -12,6 +12,9 @@ CREATE TABLE users (
 INSERT INTO users VALUES ('1', 'DaoHuy', 
 'dmhuy.ityu@gmail.com', '123456', 'admin', NULL, NULL, NULL);
 
+INSERT INTO users VALUES ('2', 'DungTruong', 
+'dungtruong151@gmail.com', '12345678', 'admin', NULL, NULL, NULL)
+
 -- update admin uid
 UPDATE users SET uid = '1' WHERE role = 'admin';
 ```
