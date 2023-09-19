@@ -6,7 +6,7 @@ CREATE TABLE users (
     role varchar(50) NOT NULL,
     location varchar(50),
     description varchar(100),
-    photo image,
+    photo VARBINARY(MAX),
 );
 
 INSERT INTO users VALUES ('1', 'DaoHuy', 
