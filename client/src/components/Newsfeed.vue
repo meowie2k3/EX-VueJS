@@ -3,6 +3,9 @@
     <button
     v-if="$store.state.isUserLoggedIn"
     @click = "logout">Logout</button>
+    <button
+    v-if="!$store.state.isUserLoggedIn"
+    @click = "gotoProfile">Profile Page</button>
   </div>
 </template>
 
@@ -24,6 +27,9 @@ export default {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       this.$router.push('/')
+    },
+    gotoProfile () {
+      this.$router.push('/profile')
     }
   }
 }

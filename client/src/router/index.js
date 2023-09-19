@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Newsfeed from '@/components/Newsfeed'
 import PageNotFound from '@/components/PageNotFound'
+import Profile from '@/components/Profile'
 
 Vue.use(Router)
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/newsfeed',
       name: 'Newsfeed',
       component: Newsfeed
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
     },
     {
       path: '/:catchAll(.*)*',
