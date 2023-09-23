@@ -95,18 +95,24 @@ export default {
     async register () {
       // console.log('register', this.Email, this.Password)
       try {
-        await AuthService.register({
+        const response = await AuthService.register({
           name: this.name,
           role: this.role,
           email: this.email,
           password: this.password
         })
-        Vue.set(this.$data, 'message', 'Registration successful. Redirecting to home page.')
+        Vue.set(this.$data, 'message', 'Registration successful.')
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
         setTimeout(() => {
-          this.$router.push('/')
+          this.$router.push('/newsfeed')
         }, 2000)
       } catch (error) {
-        Vue.set(this.$data, 'message', error.response.data)
+        let resMessage = ''
+        for (var i = 0; i < error.response.data.errors.length; i++) {
+          resMessage += error.response.data.errors[i].message + '<br>'
+        }
+        Vue.set(this.$data, 'message', resMessage)
         // console.log(error.response.data)
       }
     }
