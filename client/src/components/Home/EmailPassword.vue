@@ -85,8 +85,9 @@ export default {
           this.$router.push('/newsfeed')
         }, 1000)
       } catch (error) {
-        Vue.set(this.$data, 'message', error.response.data)
-        // console.log(error.response.data)
+        let response = 'Response ' + error.response.status + ': ' + error.response.data.error
+        Vue.set(this.$data, 'message', response)
+        // console.log(error)
       }
     }
   }
