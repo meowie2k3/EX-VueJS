@@ -22,6 +22,9 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
+    },
+    updateInfo (state, user) {
+      state.user = user
     }
   },
   actions: {
@@ -31,6 +34,9 @@ export default new Vuex.Store({
     },
     setUser ({ commit }, user) {
       commit('setUser', user)
+    },
+    updateInfo ({ commit }, user) {
+      commit('updateInfo', user)
     }
   }
 })

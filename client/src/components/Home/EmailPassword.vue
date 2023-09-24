@@ -83,7 +83,7 @@ export default {
         this.$store.dispatch('setUser', response.data.user)
         setTimeout(() => {
           this.$router.push('/newsfeed')
-        }, 2000)
+        }, 1000)
       } catch (error) {
         Vue.set(this.$data, 'message', error.response.data)
         // console.log(error.response.data)
