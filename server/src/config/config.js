@@ -7,8 +7,8 @@ module.exports = {
         password: process.env.DB_PASS || '1',
         options: {
             dialect: process.env.DIALECT || 'mssql',
-            //host: process.env.HOST || 'HUYDAO-PC',
-            host : process.env.HOST || 'LAPTOP-FDE31I62',
+            host: process.env.HOST || 'HUYDAO-PC',
+            //host : process.env.HOST || 'LAPTOP-FDE31I62',
             storage: '../../../database/EX-project.sql'
         }
     },

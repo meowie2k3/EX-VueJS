@@ -1,4 +1,5 @@
 const AuthController = require('./controllers/AuthController')
+const UpdateController = require('./controllers/UpdateController')
 
 module.exports = (app) => {
 
@@ -14,4 +15,8 @@ module.exports = (app) => {
     // login route
     app.post('/login',
         AuthController.login)
+    
+    // update Info route
+    app.post('/updateInfo',
+        UpdateController.updateUserInfo)
 }
