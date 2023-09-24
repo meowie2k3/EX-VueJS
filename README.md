@@ -1,2 +1,2 @@
 # EX-VueJS
-a website project that help pp find jobs
+a website startup project that help pp find jobs
