@@ -9,9 +9,9 @@
       <input type="text" v-model="location" placeholder="location">
       <button @click="updateInformation">Update Location</button>
     </div>
-    <br>
+    <br v-if="!user.description">
     <p v-if="user.description">description: {{ user.description }}</p>
-    <div v-if="!user.description">
+    <div>
       <input type="text" v-model="description" placeholder="description">
       <button @click="updateInformation">Update Description</button>
     </div>
@@ -45,13 +45,15 @@ export default {
       // fill in missing information to create new user object
       const user = {
         uid: this.user.uid,
+        name: this.user.name,
         email: this.user.email,
         role: this.user.role,
-        location: this.user.location || this.location,
-        description: this.user.description || this.description
+        location: this.location || this.user.location,
+        description: this.description || this.user.description
       }
-      // console.log(user)
-      // TODO: update user information in database
+      console.log(user)
+      // update user information in database
+      await UpdateService.updateInfo(user)
       // update client user object
       this.$store.dispatch('setUser', user)
       Vue.set(this.$data, 'user', user)

@@ -1,6 +1,8 @@
 const { hash } = require('bcrypt-nodejs');
 const Promise = require('bluebird');
 const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+const { QueryTypes } = require('sequelize');
+const sequelize = require('../models/index').sequelize
 
 function hashPassword (user, options) {
     const SALT_FACTOR = 8
@@ -78,6 +80,41 @@ module.exports = (sequelize, DataTypes) =>{
         return await bcrypt.compareAsync(password, this.password)
     }
 
+    users.prototype.updateInfo = async function (newUser) {
+        let uid = newUser.uid
+        
+        let Lquery = "UPDATE users SET "
+        let Rquery = " WHERE uid = '" + uid + "'"
+
+        // console.log(newUser)
+        // console.log(this.description) 
+        // comparison
+        if(this.name != newUser.name) {
+            await sequelize.query(Lquery + "name = '" + newUser.name + "'" + Rquery
+                , { type: sequelize.QueryTypes.UPDATE })
+        }
+        if(this.email != newUser.email) {
+            await sequelize.query(Lquery + "email = '" + newUser.email + "'" + Rquery
+                , { type: sequelize.QueryTypes.UPDATE })
+        }
+        if(this.role != newUser.role) {
+            await sequelize.query(Lquery + "role = '" + newUser.role + "'" + Rquery
+                , { type: sequelize.QueryTypes.UPDATE })
+        }
+        if(this.location != newUser.location) {
+            await sequelize.query(Lquery + "location = '" + newUser.location + "'" + Rquery
+                , { type: sequelize.QueryTypes.UPDATE })
+        }
+        if(this.description != newUser.description) {
+            await sequelize.query(Lquery + "description = '" + newUser.description + "'" + Rquery
+                , { type: sequelize.QueryTypes.UPDATE })
+        }
+        if(this.photo != newUser.photo) {
+            await sequelize.query(Lquery + "photo = '" + newUser.photo + "'" + Rquery
+                , { type: sequelize.QueryTypes.UPDATE })
+        }
+        return 'success'
+    }
 
     return users
 }
