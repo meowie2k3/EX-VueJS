@@ -41,6 +41,11 @@ export default {
     }
   },
   methods: {
+    resetState () {
+      // empty any input fields
+      Vue.set(this.$data, 'location', '')
+      Vue.set(this.$data, 'description', '')
+    },
     async updateInformation () {
       // fill in missing information to create new user object
       const user = {
@@ -57,6 +62,8 @@ export default {
       // update client user object
       this.$store.dispatch('setUser', user)
       Vue.set(this.$data, 'user', user)
+      // reset input fields
+      this.resetState()
     }
   }
 }
