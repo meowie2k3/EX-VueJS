@@ -7,10 +7,20 @@
           <p class="SignUp_Header">Join now</p>
         </div>
     </div>
+    <div class="overlay"></div>
   </div>
 </template>
 
 <style>
+.overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.7); /* Adjust the alpha value for the desired opacity */
+        z-index: 0; /* Ensure the overlay is above other elements */
+      }
   .Home_BG_Header {
     z-index: 0;
     position: absolute;

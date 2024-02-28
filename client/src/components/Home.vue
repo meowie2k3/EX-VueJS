@@ -2,10 +2,10 @@
     <div>
         <Header></Header>
         <div class="HomeB">
-            <EmailPassword></EmailPassword>
-            <BetterBeOurNext></BetterBeOurNext>
+            <EmailPassword :showRegisterHome="showRegisterHome"></EmailPassword>
+            <BetterBeOurNext :showRegisterHome="showRegisterHome"></BetterBeOurNext>
         </div>
-        <Footer class="HomeC"></Footer>
+        <Footer class="HomeC" :showRegisterHome="showRegisterHome"></Footer>
     </div>
     <!-- v-model: bind input data to variables -->
 </template>

@@ -39,6 +39,7 @@
     <div class="FirstBox" @click="toggleRegister">
       <p class="FirstText">First time? Join now</p>
     </div>
+    <div v-if="showRegisterHome" class="overlay"></div>
   </div>
 </template>
 
@@ -94,6 +95,15 @@ export default {
 </script>
 
 <style>
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust the alpha value for the desired opacity */
+    z-index: 0; /* Ensure the overlay is above other elements */
+  }
   .Home_Body {
     position: absolute;
     max-width: 360px;
